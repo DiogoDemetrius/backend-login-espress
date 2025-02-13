@@ -70,3 +70,17 @@ exports.resetPassword = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+// Deletar usuário
+exports.deleteUser = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const user = await User.findByIdAndDelete(userId);
+
+        if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
+
+        res.json({ message: 'Usuário deletado com sucesso' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
