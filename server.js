@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const vmRoutes = require('./routes/vmRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 require('dotenv').config();
@@ -13,6 +14,7 @@ app.use(cors());
 connectDB();
 
 app.use('/api/auth', authRoutes);
+app.use('/api/vm', vmRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
