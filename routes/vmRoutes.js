@@ -1,8 +1,12 @@
 const express = require('express');
-const { startVM } = require('../controllers/vmController');
+const vmController = require('../controllers/vmController');
 
 const router = express.Router();
 
-router.post('/start-vm', startVM);
+// Teste simples sem middleware
+router.post('/start-vm', (req, res, next) => {
+    console.log('Middleware de teste');
+    next();
+}, vmController.startVM);
 
 module.exports = router;
